@@ -1,0 +1,17 @@
+result_type,name,std_id,abbr,method,order
+2,Nitrogen,B-TN.03.01,TN,,1
+2,Phosphorus,B-TP.05.04,P,,2
+2,Potassium,B-K.05.04,K,,3
+2,Magnesium,B-MG.05.04,Mg,,4
+2,Calcium,B-CA.05.04,Ca,,5
+2,Sulfur,B-TS.05.04,S,,6
+2,Boron,B-B.05.04,B,,7
+2,Zinc,B-ZN.05.04,Zn,,8
+2,Manganese,B-MN.05.04,Mn,,9
+2,Iron,B-FE.05.04,Fe,,10
+2,Copper,B-CU.05.04,Cu,,11
+2,Sodium,B-NA.05.04,Na,,12
+2,Aluminum,B-AL.05.04,Al,,13
+2,Molybdenum,B-MO.05.06,Mo,,14
+2,Nickel,B-NI.10.04,Ni,,15
+2,Nitrate-N,B-NO3.01.02,NO3-N,,16

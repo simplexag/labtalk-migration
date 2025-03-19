@@ -1,0 +1,53 @@
+result_type,name,std_id,abbr,method,order
+1,Phosphorus,S-P-M1.04,P (M1),,1
+1,Phosphorus,S-P-M3.04,P (M3),,2
+1,Phosphorus Index,S-P-NCINDX,P (NCINDX),,3
+1,Potassium,S-K-M1.05,K (M1),,4
+1,Potassium,S-K-M3.05,K (M3),,5
+1,Potassium Index,S-K-NCINDX,K (NCINDX),,6
+1,Magnesium,S-MG-M1.05,Mg (M1),,7
+1,Magnesium,S-MG-M3.05,Mg (M3),,8
+1,Calcium,S-CA-M1.05,Ca (M1),,9
+1,Calcium,S-CA-M3.05,Ca (M3),,10
+1,Buffer pH,S-BPH-AEB.02,pHb (AEB),,11
+1,Buffer pH,S-BPH-SMPB.02,pHb (SMPB),,12
+1,Sulfur,S-S-M3.05,S (M3),,13
+1,Sulfur Index,S-S-NCINDX,S (NCINDX),,14
+1,Boron,S-B-HW.01.10,B (HW),,15
+1,Boron,S-B-M3.04,B (M3),,16
+1,Zinc,S-ZN-M1.05,Zn (M1),,17
+1,Zinc,S-ZN-M3.05,Zn (M3),,18
+1,Zinc index,S-ZN-NCINDX,Zn (NCINDX),,19
+1,Manganese,S-MN-M1.05,Mn (M1),,20
+1,Manganese,S-MN-M3.05,Mn (M3),,21
+1,Manganese Index,S-MN-NCINDX,Mn (NCINDX),,22
+1,Iron,S-FE-M1.05,Fe (M1),,23
+1,Iron,S-FE-M3.05,Fe (M3),,24
+1,Copper,S-CU-M1.05,Cu (M1),,25
+1,Copper,S-CU-M3.05,Cu (M3),,26
+1,Copper Index,S-CU-NCINDX,Cu (NCINDX),,27
+1,Sodium,S-NA-M1.05,Na (M1),,28
+1,Sodium,S-NA-M3.05,Na (M3),,29
+1,Aluminum,S-AL-M3.05,Al (M3),,30
+1,Nitrate-Nitrogen,S-NO3-1:5.01.01,NO3 (1:5),,31
+1,Exchangeable Acidity,S-AC-KCL.12,Acidity (KCL),,32
+1,Acidity,S-ACIDITY.19,Acidity,,33
+1,OM (LOI),S-SOM-LOI.15,Organic (LOI),,34
+1,Humic Matter,S.HM-NaOH,HM,,35
+1,K:Mg ratio,S-K:MG.19,K:Mg,,36
+1,Ca:Mg ratio,S-CA:MG.19,Ca:Mg (AA),,37
+1,P:S ratio,S-P:S-M3.19,P:S (M3),,38
+1,Ca:K ratio,S-CA:KM1.19,Ca:K,,39
+1,Base Saturation,S-BS.19,BS,,40
+1,Exchangeable Sodium Percentage,S-ESP.19,ESP,,41
+1,Base Saturation - K,S-BS-K.19,BS-K (K),,42
+1,Base Saturation - Mg,S-BS-MG.19,BS-Mg (MG),,43
+1,Base Saturation - Na,S-BS-CA.19,BS-Ca (CA),,44
+1,Base Saturation - H,S-BS-H.19,BS-H (H),,45
+1,Base Saturation - Ca,S-BS-NA.19,BS-Na (NA),,46
+1,pH,S-PH-1:1.02.07,pH (1:1),,47
+1,Cation Exchange Capacity,S-CEC.19,CEC (Calc),,48
+1,Sand,S-SAND-SED.10,Sand,,49
+1,Silt,S-SILT-SED.10,Silt,,50
+1,Clay,S-CLAY-SED.10,Clay,,51
+1,"Carbon, Active",S-AC-KMN04.01,AC,,52

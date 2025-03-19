@@ -124,7 +124,7 @@ def fetch_sample_events(customer, growers, HEADERS, V2_ACCESS_TOKEN, lab_ref):
                 ##
                 event_data["lab_number"] = event.get("lab_number")
                 event_data["layer_id"] = event.get("third_party_id")
-                #print (event.get("lab"))
+                print (event.get("lab"))
                 if event.get("lab"):
                     event_data["lab_id"] = [obj['id'] for obj in lab_ref if obj['third_party_id'] == str(event.get("lab"))][0]
                 else:
