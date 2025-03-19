@@ -1,0 +1,3 @@
+.venv
+/out
+processed_customers.json
