@@ -2,7 +2,7 @@ import requests, json, os
 
 PROCESSED_FILE = "processed_customers.json"
 
-
+SEND_TO_V2 = True
 
 lab_lookup = {}
 lab_lookup["1"] = "Camilla - M1"
@@ -113,9 +113,9 @@ def fetch_sample_events(customer, growers, HEADERS, V2_ACCESS_TOKEN, lab_ref):
                 detail_data = detail_response.json()
                 event_data["customer_id"] = new_customer_id
                 if event.get("plant_results") == True:
-                    event_data["result_type"] = "plant"
+                    event_data["result_type"] = 2
                 if event.get("soil_results") == True:
-                    event_data["result_type"] = "soil"
+                    event_data["result_type"] = 1
                 if event.get("nematode_results") == True:
                     event_data["result_type"] = "nematode"
 
@@ -123,12 +123,16 @@ def fetch_sample_events(customer, growers, HEADERS, V2_ACCESS_TOKEN, lab_ref):
                 ##Get new lab number##
                 ##
                 event_data["lab_number"] = event.get("lab_number")
-                event_data["layer_id"] = event.get("third_party_id")
+
+                event_data["third_party_id"] = event.get("id")
+
+                if event.get("third_party_id"):
+                    event_data["layer_id"] = event.get("third_party_id")
                 print (event.get("lab"))
                 if event.get("lab"):
                     event_data["lab_id"] = [obj['id'] for obj in lab_ref if obj['third_party_id'] == str(event.get("lab"))][0]
                 else:
-                    event_data["lab_id"] = None
+                    event_data["lab_id"] = [obj['id'] for obj in lab_ref if obj['third_party_id'] == str(10)][0]
                 event_data["date_collected"] = event.get("sampled_date")
                 event_data["date_processed"] = event.get("processed_date")
                 grower = [obj for obj in growers if obj["id"] == event.get("grower")]
@@ -194,7 +198,7 @@ def fetch_sample_events(customer, growers, HEADERS, V2_ACCESS_TOKEN, lab_ref):
                         #Get the recs
                         unique_names = {entry["name"] for entry in sample["soilrecommendation"]}
 
-
+                comments = {}
                 ##Check for soil data
                 if event.get("soil_results") == True:
                     #Get results
@@ -248,6 +252,7 @@ def fetch_sample_events(customer, growers, HEADERS, V2_ACCESS_TOKEN, lab_ref):
                             nutrientArray[pos] = nutrient["value"]
                         nutrientArray[-1] = sample["comment"]
                         event_data["results"]["atts"].append(nutrientArray)
+                        comments[sample["number"]] = sample["comment"]
                         #Get the recs
                         unique_names = {entry["name"] for entry in sample["soilrecommendation"]}
 
@@ -274,6 +279,14 @@ def fetch_sample_events(customer, growers, HEADERS, V2_ACCESS_TOKEN, lab_ref):
                                 "unit": unit
                             })
                             counter += 1
+                        counter += 1
+                        
+                        rec["meta"].append({
+                            "dt": "S",
+                            "att": "COMMENT",
+                            "pos": counter,
+                            "unit": "none"
+                        })
 
                         for sample in detail_data.get("samples"):
                             recArray = []
@@ -283,6 +296,7 @@ def fetch_sample_events(customer, growers, HEADERS, V2_ACCESS_TOKEN, lab_ref):
                                 if (name == nutrient["name"]):
                                     pos = get_pos_by_att(rec["meta"],nutrient["recommendation_element"]["abbreviation"])
                                     recArray[pos] = nutrient["value"]
+                            recArray[-1] = comments[sample["number"]]   
                             rec["recs"].append(recArray)
                         event_data["recommendations"].append(rec)
                 event_data["documents"] = []
@@ -292,10 +306,27 @@ def fetch_sample_events(customer, growers, HEADERS, V2_ACCESS_TOKEN, lab_ref):
                         "display_name": report["file_name"]
                     })
                 
-                file_name = "out/%s.json" % (event.get("id"))
-                with open(file_name, "w") as json_file:
-                    json.dump(event_data, json_file, indent=4) 
-                #break
+                if SEND_TO_V2:
+                    try:
+                        V2_LAB_API_URL = "http://127.0.0.1:8000/results/upload/"
+                        LABTALK_V2_HEADERS = {
+                            "Authorization": f"Bearer {V2_ACCESS_TOKEN}",
+                            "Content-Type": "application/json"
+                        }
+                        response = requests.post(V2_LAB_API_URL, headers=LABTALK_V2_HEADERS, json=event_data)
+                        print (response.json())
+                        print (event.get("id"))
+
+                        #file_name = "out/%s.json" % (event.get("id"))
+                        #with open(file_name, "w") as json_file:
+                        #   json.dump(event_data, json_file, indent=4)
+                    except requests.exceptions.RequestException as e:
+                        print(f"Error making request: {e}")
+                        print (event_data)
+                else:
+                    file_name = "out/%s.json" % (event.get("id"))
+                    with open(file_name, "w") as json_file:
+                        json.dump(event_data, json_file, indent=4) 
 
             event_url = data.get("next")  # Adjust if the API uses a different pagination format
         else:
@@ -370,8 +401,8 @@ def common_rec_elm_names(samples):
 
 if __name__ == "__main__":
     LOGIN_DATA = {
-        "username": "admin",
-        "password": "admin99!"
+        "username": "hunt",
+        "password": "Psuy2k99!"
     }
 
     TOKEN_URL = "http://127.0.0.1:8000/api/token/"

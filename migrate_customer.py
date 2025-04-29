@@ -56,14 +56,15 @@ def fetch_customers(api_url, HEADERS):
 if __name__ == "__main__":
     #Log into labtalk v2
     LOGIN_DATA = {
-        "username": "admin",
-        "password": "admin99!"
+        "username": "hunt",
+        "password": "psuy2k99!"
     }
 
     TOKEN_URL = "http://127.0.0.1:8000/api/token/"
     headers = {"Content-Type": "application/json"}
     if SEND_TO_V2:
         response = requests.post(TOKEN_URL, json=LOGIN_DATA, headers=headers)
+        print (response.json())
         ACCESS_TOKEN = response.json()["access"]
     
     API_URL = "https://www.labtalkonline.net/core/api/customers"

@@ -102,8 +102,8 @@ def fetch_lab_crops(v1_equid, v2_equid):
 if __name__ == "__main__":
     #Log into labtalk v2
     LOGIN_DATA = {
-        "username": "admin",
-        "password": "admin99!"
+        "username": "hunt",
+        "password": "psuy2k99!"
     }
 
     TOKEN_URL = "http://127.0.0.1:8000/api/token/"
